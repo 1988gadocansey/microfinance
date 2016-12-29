@@ -7,7 +7,7 @@ import com.gadeksystems.banking.models.Customer;
 public interface CustomerService {
 	public Customer findCustomerByEmail(String email);
 	 Customer storeCustomer(Customer customer);
-	List<Customer> getAllCustomers();
+	 Iterable<Customer> getAllCustomers();
 	Customer getCustomerById(int cId);
 	Customer getCustomerByAccount(String accountNo);
    

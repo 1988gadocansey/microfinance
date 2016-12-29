@@ -234,7 +234,7 @@
                     <a href="#"><i class="sidebar-menu-icon material-icons md-18">work</i><span>Transactions</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
                         <ul class="uk-nav uk-nav-dropdown">
-                         <li><a href="/management/customer/account">Account Opening</a></li>
+                         <li><a href="/management/accounts/open">Open Account</a></li>
                             <li><a href="/programmes">Deposit</a></li>
                             <li><a href="/programmes">Withdrawals</a></li>
                             <li><a href="/programmes">Accounts Transfers</a></li>
@@ -249,7 +249,8 @@
                     <a href="#"><i class="sidebar-menu-icon material-icons md-18">supervisor_account</i><span>Customer Care</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
                         <ul class="uk-nav uk-nav-dropdown">
-                            <li><a href="/management/customers">Customers</a></li>
+                            <li><a href="/management/customers/create">Add Customers</a></li>
+                            <li><a href="/management/customers">View Customers</a></li>
                             <li><a href="/programmes">Check Account Balance</a></li>
                             <li><a href="/programmes">Print Account Statements</a></li>
                             <li><a href="/programmes">Application for Passbook</a></li>                  

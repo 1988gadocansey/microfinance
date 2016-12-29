@@ -1,7 +1,8 @@
 package com.gadeksystems.banking.models;
 
 import java.io.Serializable;
-
+import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -10,7 +11,20 @@ import javax.persistence.*;
 public class Customer implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+  @Column(name="date_created")
+ private Date created;
+   @Column(name="last_updated")
+  private Date updated;
+
+  @PrePersist
+  protected void onCreate() {
+    created = new Date();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    updated = new Date();
+  }
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     @Column(name="id")
@@ -21,7 +35,8 @@ public class Customer implements Serializable {
 
 	@Column(name = "code")
     private String code;   
-
+    @Column(name = "name")
+    private String name;  
 	@Column(name = "firstname")
     private String firstname;   
 
@@ -66,9 +81,13 @@ public class Customer implements Serializable {
 	@Column(name ="marital")
 	private String marital;
 
-	 
+          
 	@Column(name ="type")
 	private String type;
+         
+               
+          
+        
 	public Customer(){
 		
 	}
@@ -91,6 +110,7 @@ public class Customer implements Serializable {
 	        this.relation= customer.relation;
 	        this.beneficiary= customer.beneficiary;
 	        this.type= customer.type;
+                this.name= customer.name;
 	        this.marital= customer.marital;
 	        this.denomination= customer.denomination;
 	               
@@ -112,7 +132,13 @@ public class Customer implements Serializable {
 		this.id = id;
 	}
 	
-	 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = title + " " + firstname + " " + othername + " " + lastname;
+	}
 	public String getEmail() {
 		return email;
 	}

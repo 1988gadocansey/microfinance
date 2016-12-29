@@ -101,6 +101,7 @@
             <version>5.2.4.Final</version>
             <type>jar</type>
         </dependency>
+        
     </dependencies>
 
 </project>

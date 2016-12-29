@@ -25,7 +25,7 @@
 			<div class="md-card">
 				<div class="md-card-content" style="">
 				
-					 <form commandName="customer" novalidate id="wizard_advanced_form" class="uk-form-stacked"   action="/management/customer/account" method="post" accept-charset="utf-8"  name="updateForm"  v-form>
+					 <form commandName="customer" novalidate id="wizard_advanced_form" class="uk-form-stacked"   action="/management/customers/create" method="post" accept-charset="utf-8"  name="updateForm"  v-form>
 
                 
                 <div data-uk-observe="" id="wizard_advanced" role="application" class="wizard clearfix">
@@ -38,7 +38,7 @@
                             </li>
                             <li role="tab" class="payment_header disabled" aria-disabled="true"   v-bind:class="{ 'error' : in_payment_section}" >
                                 <a aria-controls="wizard_advanced-p-1" href="#wizard_advanced-h-1" id="wizard_advanced-t-1">
-                                    <span class="number">2</span> <span class="title">Account Creation</span>
+                                    <span class="number">2</span> <span class="title">Step 2</span>
                                 </a>
                             </li>
                         </ul>
@@ -327,7 +327,8 @@
 </div>
 </div>
                                               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</form>
+
+                                         </form>
 					
 				
 				</div>
