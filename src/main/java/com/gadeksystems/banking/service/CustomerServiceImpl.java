@@ -46,8 +46,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public Customer getCustomerById(int cId) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerRepository.findOne(cId);
 	}
 
 	 

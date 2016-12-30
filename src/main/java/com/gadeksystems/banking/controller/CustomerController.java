@@ -10,13 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
 import com.gadeksystems.banking.service.CustomerService;
+
+
 import com.gadeksystems.banking.models.Customer;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-
+import com.gadeksystems.banking.providers.*;
 @Controller
 
 public class CustomerController {
@@ -29,7 +32,7 @@ public class CustomerController {
     public void setProductService(CustomerService customerService) {
         this.customerService = customerService;
     }
-
+    
     @RequestMapping("management/customers/create")
     @ModelAttribute("customer")
     public ModelAndView create() {
@@ -53,10 +56,20 @@ public class CustomerController {
         } else {
             model.addAttribute("error", customer.getFirstname() + " Could not be saved to database try again later");
         }
-        return "customers/create";
-    }
-
+        
+        return "redirect:/management/customers/account/open/" + customer.getId();
     
+    }
+    @RequestMapping("/management/customers/account/open/{id}")
+    public String showProduct(@PathVariable Integer id, Model model,Customer customer){
+        model.addAttribute("customer", customerService.getCustomerById(id));
+        /*Map<String, Object> model = new HashMap<String, Object>();
+        model.put("publications",  publicationService.getPublications());
+        model.put("categories",  categoryService.getCategories());
+        return new ModelAndView("addPublication", model);*/
+        return "accounts/create";
+    }
+    // all methods should look like this Spring 4.0
     public String index(Model model){
          
        // model.addAttribute("customers", customerService.getAllCustomers());

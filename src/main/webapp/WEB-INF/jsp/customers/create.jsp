@@ -5,14 +5,21 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../layout/header.jsp" %>
-
+<style>
+input{
+	text-transform: uppercase;
+}
+select{
+	text-transform: uppercase;
+}
+</style>
 <div id="page_content">
 	<div id="page_content_inner">
 
   
 		<h6 class="heading_b uk-margin-bottom">Customers</h6>
 
-		<c:if test="${success!=''}">
+		<%-- <c:if test="${success!=''}">
 		<div style="text-align: center" class="uk-alert uk-alert-success"
 			data-uk-alert=""><c:out value="${success}"/></div>
 		 </c:if>
@@ -20,7 +27,8 @@
 		 <c:if test="${error!=''}">
 		<div style="text-align: center" class="uk-alert uk-alert-danger"
 			data-uk-alert=""><c:out value="${error}"/></div>
-		</c:if>
+		</c:if> --%>
+		
 		<div class="uk-width-xLarge-1-10">
 			<div class="md-card">
 				<div class="md-card-content" style="">
@@ -82,12 +90,12 @@
                                         <div class="md-input-wrapper md-input-filled">
                                         <select   name='title' id="title"   v-model="title" v-select="title" v-form-ctrl required="">
                                                 <option value=''>Select   Title</option>
-                                                <option  value='Mr'>Mr</option>
-                                                <option  value='Mrs'>Mrs</option>
-                                                <option  value='Miss'>Miss</option>
-                                                <option  value='Rev'>Rev</option>
+                                                <option  value='MR'>Mr</option>
+                                                <option  value='MRS'>Mrs</option>
+                                                <option  value='MISS'>Miss</option>
+                                                <option  value='REV'>Rev</option>
                                                 <option  value='PhD'>Dr</option>
-                                                <option  value='Prof'>Prof</option>
+                                                <option  value='PROF'>Prof</option>
                                                 
                                             </select>
                                         </div>    
@@ -106,8 +114,8 @@
                                         <div class="md-input-wrapper md-input-filled">
                                         	<select   name='gender' id="gender"   v-model="gender" v-select="gender" v-form-ctrl required="">
                                                 <option value=''>Select Gender</option>
-                                                <option  value='Male'>Male</option>
-                                                <option  value='Female'>Female</option>
+                                                <option  value='MALE'>Male</option>
+                                                <option  value='FEMALE'>Female</option>
                                                  
                                                 
                                             </select>
@@ -125,10 +133,10 @@
 													<select name='marital' id="marital" v-model="marital"
 														v-select="marital" v-form-ctrl required="">
 														<option value=''>Select Marital Status</option>
-														<option value='Married'>Married</option>
-														<option value='Single'>Single</option>
-														<option value='Divorced'>Divorced</option>
-														<option value='Engaged'>Engaged</option>
+														<option value='MARRIED'>Married</option>
+														<option value='SINGLE'>Single</option>
+														<option value='DIVORCED'>Divorced</option>
+														<option value='ENGAGED'>Engaged</option>
 
 
 													</select> <span class="md-input-bar"></span>
@@ -207,14 +215,14 @@
                                 <div class="parsley-row">
                                     <div class="uk-input-group">
 
-                                        <div class="md-input-wrapper md-input-filled"><label for="wizard_referer">Relationship to Beneficiary :</label><input type="text" id="relationship" name="relationship" class="md-input"   required="required"      v-model="relationship"  v-form-ctrl><span class="md-input-bar"></span></div>                
-                                        <p  class=" uk-text-danger uk-text-small  "   v-if="updateForm.relationship.$error.required">Relationship is required</p>                                      
+                                        <div class="md-input-wrapper md-input-filled"><label for="wizard_referer">Relationship to Beneficiary :</label><input type="text" id="relation" name="relation" class="md-input"   required="required"      v-model="relation"  v-form-ctrl><span class="md-input-bar"></span></div>                
+                                        <p  class=" uk-text-danger uk-text-small  "   v-if="updateForm.relation.$error.required">Relationship is required</p>                                      
                                     </div>
                                 </div>
                                          <div class="parsley-row">
                                     <div class="uk-input-group">
 
-                                        <div class="md-input-wrapper md-input-filled"><label for="wizard_skype">Denomination :</label><input type="text" id="denomination" name="denomination"  required=""v-form-ctrl  class="md-input"    v-model="denomination"      /><span class="md-input-bar"></span></div>         
+                                        <div class="md-input-wrapper md-input-filled"><label for="wizard_skype">Religious Denomination :</label><input type="text" id="denomination" name="denomination"  required=""v-form-ctrl  class="md-input"    v-model="denomination"      /><span class="md-input-bar"></span></div>         
                                          <p class="uk-text-danger uk-text-small " v-if="updateForm.denomination.$error.required" >Religious denomination is required</p>                                           
                               
                                     </div>

@@ -234,7 +234,7 @@
                     <a href="#"><i class="sidebar-menu-icon material-icons md-18">work</i><span>Transactions</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
                         <ul class="uk-nav uk-nav-dropdown">
-                         <li><a href="/management/accounts/open">Open Account</a></li>
+                        	 <li><a href="/management/customers/create">Open Account</a></li>
                             <li><a href="/programmes">Deposit</a></li>
                             <li><a href="/programmes">Withdrawals</a></li>
                             <li><a href="/programmes">Accounts Transfers</a></li>

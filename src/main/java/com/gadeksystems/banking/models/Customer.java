@@ -3,7 +3,7 @@ package com.gadeksystems.banking.models;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-
+import java.util.Set;
 import javax.persistence.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -32,7 +32,16 @@ public class Customer implements Serializable {
   protected void onUpdate() {
     updated = new Date();
   }
-	@Id
+  @Transient 
+   private Set<Account> accounts;
+  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+  public void setAccounts(Set<Account> accounts) {
+      this.accounts = accounts;
+  }
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     @Column(name="id")
     private int id;
@@ -98,7 +107,7 @@ public class Customer implements Serializable {
 	public Customer(){
 		
 	}
-	
+	 
 	public Customer(Customer customer) {
 	        
 	        this.firstname = customer.firstname;
@@ -140,11 +149,12 @@ public class Customer implements Serializable {
 	}
 	
 	public String getName() {
-		return name;
+	return	this.name = this.getTitle() + " " + this.getFirstname() + " " + othername + " " + lastname;
+		
 	}
 
 	public void setName(String name) {
-		this.name = title + " " + firstname + " " + othername + " " + lastname;
+		this.name = this.getTitle() + " " + this.getFirstname() + " " + othername + " " + lastname;
 	}
 	public String getEmail() {
 		return email;
@@ -362,7 +372,21 @@ public class Customer implements Serializable {
 		this.dob = dob;
 	}
 	 
-	
+	 @Override
+	    public String toString() {
+	        String result = String.format(
+	                "Customer[id=%d, firstname='%s']%n",
+	                id, firstname);
+	        if (accounts != null) {
+	            for(Account account : accounts) {
+	                result += String.format(
+	                        "Account[id=%d, name='%s']%n",
+	                        account.getId(), account.getName());
+	            }
+	        }
+
+	        return result;
+	    }
 	
   
 }

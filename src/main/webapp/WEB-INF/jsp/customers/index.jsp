@@ -73,58 +73,46 @@
             <div class="md-card">
                 <div class="md-card-content">
 
-                    <form action=" "  method="get" accept-charset="utf-8" novalidate id="group">
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<form action=" " method="get" accept-charset="utf-8" 
+						id="group">
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+						<div class="uk-grid" data-uk-grid-margin="">
+							
+							<div class="uk-width-medium-1-5">
+								<div class="uk-margin-small-top">
+									<select name='search' id="search" class="md-input" required="">
+										 
+										<option value=''>Search by</option>
+										<option value='name'>Name</option>
+										<option value='account'>Account Number</option>
 
 
-                        <div class="uk-grid" data-uk-grid-margin="">
+									</select>
+								</div>
+							</div>
 
-                            <div class="uk-width-medium-1-5">
-                                <div class="uk-margin-small-top">
+							<div class="uk-width-medium-1-5">
+								<div class="uk-margin-small-top">
+									<input type="text" style="" required="" name="search"
+										class="md-input"
+										placeholder=" Account number or name">
+								</div>
+							</div>
+						 
+							<div class="uk-width-medium-1-5">
+								<div class="uk-margin-small-top">
 
-                                </div>
-                            </div>
-                            <div class="uk-width-medium-1-5">
-                                <div class="uk-margin-small-top">
-
-                                </div>
-                            </div>
-
-                            <div class="uk-width-medium-1-5">
-                                <div class="uk-margin-small-top">
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="uk-width-medium-1-5">
-                                <div class="uk-margin-small-top">                            
-                                    <input type="text" style=" "   name="search"  class="md-input" placeholder="search by course name or course code">
-                                </div>
-                            </div>
-
-
-
-                            <div class="uk-width-medium-1-5">
-                                <div class="uk-margin-small-top">
-                                    <input type="text" style=" "   name="search"  class="md-input" placeholder="search by course name or course code">
-
-
-                                </div>
-                            </div>
-
-
-
-                        </div> 
-                        <div  align=''>
-
-                            <button class="md-btn  md-btn-small md-btn-success uk-margin-small-top" type="submit"><i class="material-icons">search</i></button> 
-
-                        </div>
-
-                    </form> 
-                </div>
+									<button
+										class="md-btn  md-btn-small md-btn-success uk-margin-small-top"
+										type="submit">
+										<i class="material-icons">search</i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
             </div>
         </div>
         <p>&nbsp</p>
@@ -143,10 +131,10 @@
                                         <th>NAME</th>
                                         <th style="text-align:">PICTURE</th>
 
-                                        <th  style="text-align:">ACCOUNT NAME</th>
-                                        <th  style="text-align:">ACCOUNT NUMBER</th>
-                                        <th  style="text-align:">ACCOUNT TYPES</th>
-                                        <th>PHONE</th> 
+                                        
+                                        <th  style="text-align:">GENDER</th>
+                                        <th  style="text-align:">PHONE</th>
+                                       
                                         <th style="text-align:">CONTACT ADDRESS</th>
 
                                         <th style="text-align:">OCCUPATION</th>
@@ -159,16 +147,13 @@
                                     <tbody>
                                        <c:forEach var="customer" items="${customers}">
                                          <tr>
-                                               <td>${customer.firstname}</td>
-                                                <td>pic</td>
-                                                  <td>Pentecost Church</td>
-                                                  <td>45455</td>
-                                                   <td>Current</td>
-                                                   <td>${customer.getGender()}</td>
-                                                    <td>${customer.getFirstname()}</td>
-                                                     <td>${customer.getFirstname()}</td>
-                                                         <td>${customer.getFirstname()}</td>
-                                           
+                                         		<td>1</td>
+                                               <td>${customer.getName()}</td>
+                                                <td>  <img src="${pageContext.request.contextPath}/photos/customers/gad.jpg" alt="user avatar"/></td>
+                                                  <td>${customer.gender}</td>
+                                                 <td>${customer.mobile}</td>    
+                                             <td>${customer.address}</td>
+                                               <td>${customer.job}</td>
                                             <td> 
                                                 
                                             <a href='/show' ><i title='Click to edit course' class="md-icon material-icons">edit</i></a> 
@@ -205,14 +190,74 @@
 
 <%@include file="../layout/footer.jsp" %>
 <script src="${pageContext.request.contextPath}/assets/js/select2.full.min.js"></script>
-<script>
+  <script>
+  
+$(document).ready(function(){
+  $('select').select2({ width: "resolve" });
 
-          $(document).ready(function () {
-              $('select').select2({width: "resolve"});
-
-
-          });
+  
+});
 
 
 </script>   
+
+<script>
+
+
+//code for ensuring vuejs can work with select2 select boxes
+Vue.directive('select', {
+  twoWay: true,
+  priority: 1000,
+  params: [ 'options'],
+  bind: function () {
+    var self = this
+    $(this.el)
+      .select2({
+        data: this.params.options,
+         width: "resolve"
+      })
+      .on('change', function () {
+        self.vm.$set(this.name,this.value)
+        Vue.set(self.vm.$data,this.name,this.value)
+      })
+  },
+  update: function (newValue,oldValue) {
+    $(this.el).val(newValue).trigger('change')
+  },
+  unbind: function () {
+    $(this.el).off().select2('destroy')
+  }
+})
+
+
+var vm = new Vue({
+  el: "body",
+  ready : function() {
+  },
+ data : {
+   
+    
+ options: [      
+    ],
+    in_payment_section : false,
+  },
+  methods : {
+    go_to_payment_section : function (event){
+    UIkit.modal.confirm(vm.$els.confirm_modal.innerHTML, function(){
+        
+      vm.$data.in_payment_section=true
+})
+
+    },
+    submit_form : function(){
+      return (function(modal){ modal = UIkit.modal.blockUI("<div class='uk-text-center'>Saving Data<br/><img class='uk-thumbnail uk-margin-top' src='${pageContext.request.contextPath}/assets/img/spinners/spinner_success.gif' /></div>"); setTimeout(function(){ modal.hide() }, 50000) })();
+    },
+        
+    go_to_fill_form_section : function (event){    
+      vm.$data.in_payment_section=false
+    }
+  }
+})
+
+</script>
 
