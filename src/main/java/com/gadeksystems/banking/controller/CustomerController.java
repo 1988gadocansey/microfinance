@@ -71,4 +71,15 @@ public class CustomerController {
         modelAndView.setViewName("customers/index");
         return modelAndView;
     }
+     
+     @RequestMapping("/customers")
+     
+     public ModelAndView getCustomers() {
+         ModelAndView modelAndView = new ModelAndView();
+
+        //modelAndView.addObject("customer", new Customer());
+        modelAndView.setViewName("customerDisplay");
+        return modelAndView;
+    
+    }
 }

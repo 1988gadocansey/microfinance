@@ -5,12 +5,19 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
-
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+@EntityListeners(AuditingEntityListener.class)
+@EnableJpaAuditing
 @Entity
+
 @Table(name = "customers")
 public class Customer implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+   
   @Column(name="date_created")
  private Date created;
    @Column(name="last_updated")
