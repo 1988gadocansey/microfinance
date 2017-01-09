@@ -15,13 +15,28 @@
     <link rel="icon" type="image/png" href="public/assets/img/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="public/assets/img/favicon-32x32.png" sizes="32x32">
 
-    <title>Banking - Savoy Microfinance</title>
+    <title>United Workers Cooperative Credit Union</title>
 	 <script>
     var myVar=setInterval(function () {myTimer()}, 1000);
     function myTimer() {
         var date = new Date();
         document.getElementById("demo").innerHTML = date.toString();
     }
+    function printDiv(divID) {
+        //Get the HTML of div
+        var divElements = document.getElementById(divID).innerHTML;
+                //Get the HTML of whole page
+                var oldPage = document.body.innerHTML;
+                //Reset the page's HTML with div's HTML only
+                document.body.innerHTML =
+                "<html><head><title></title></head><body>" +
+                divElements + "</body>";
+                //Print Page
+                window.print();
+                //Restore orignal HTML
+                document.body.innerHTML = oldPage;
+        }
+
     </script>
 	 <%--  <!-- angular -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
@@ -79,7 +94,7 @@
         <div class="header_main_content">
             <nav class="uk-navbar">
                 <div class="main_logo_top">
-                    <a href="/dashboard"><img src="${pageContext.request.contextPath}/assets/img/logo.png" alt="" height="15" width="71"/></a>
+                    <a href="/dashboard"><img src="${pageContext.request.contextPath}/logins/logo.jpg" alt="" height="15" width="65"/></a>
                      <span class="" style="color:white"  >Banking</span>
                  
                 </div>

@@ -247,72 +247,39 @@ select{
          
      <div data-uk-grid-margin="" class="uk-grid uk-grid-width-medium-1-4 uk-grid-width-large-1-4">
 
-
-                                <div class="parsley-row">
+ 			 <div class="parsley-row" style="margin-left:80px">
                                     <div class="uk-input-group">
+
+                                        <label for="">ID Type</label>     
+                                         <div class="md-input-wrapper md-input-filled">
+													<select name='type' id="type" class="md-input"  v-model="type"  v-select="type"  v-form-ctrl  >
+														<option value=''>Select ID Type</option>
+														
+														<option value='Voters ID'>Voters ID</option>
+														<option value='Passport'>Passport</option>
+														<option value='License'>Drivers License</option>
+											 	 		<option value='Not available'>Not available</option>
+
+													</select> <span class="md-input-bar"></span>
+                                        </div>       
                                         
-                                         <div class="md-input-wrapper md-input-filled"><label for="wizard_email">Email :</label><input type="email" id="email" name="email" class="md-input"   v-model="email"v-form-ctrl  ><span class="md-input-bar"></span></div>                                            
-                                         <p class="uk-text-danger uk-text-small "  v-if="updateForm.email.$invalid"  >Please enter a valid email resident</p>
+                                    </div>
+                                </div>
+                                   
+                                  <div class="parsley-row" v-if ="type =='Voters ID'">
+                                    <div class="uk-input-group">
+
+                                         
+                                       <div class="md-input-wrapper md-input-filled"><label for="wizard_referer">ID Number:</label><input type="text" id="hostel" name="number" class="md-input"     v-model="hostel"  v-form-ctrl><span class="md-input-bar"></span></div>                
+                                        <p  class=" uk-text-danger uk-text-small  "   v-if="updateForm.hostel.$error.required">Number Name is required</p>                                      
                                     
-                                    </div>
-                                </div>
 
-                               
-                               
-                               <div class="parsley-row">
-                                    <div class="uk-input-group">
-                                        
-                                        <div class="md-input-wrapper md-input-filled"><label for="wizard_email">NHIS N<u>O</u> :</label><input type="text" id="" name="nhis" class="md-input"   v-model="nhis"v-form-ctrl  ><span class="md-input-bar"></span></div>                                            
-                                        
-                                    </div>
-                                </div>
-         <div class="parsley-row">
-                                    <div class="uk-input-group">
-                                        
-                                        <div class="md-input-wrapper md-input-filled"><label for="wizard_email">BILLS:</label><input type="text" id="" name="bill" class="md-input"   disabled=""v-model="bill"v-form-ctrl  ><span class="md-input-bar"></span></div>                                            
-                                        
-                                    </div>
-                                </div>
+                                       </div>
+                              </div>
+         
+     </div>
 
-                            </div>
-
-              <div data-uk-grid-margin="" class="uk-grid uk-grid-width-medium-1-4 uk-grid-width-large-1-4">
-
-
-                                <div class="parsley-row">
-                                    <div class="uk-input-group">
-
-                                        <div class="md-input-wrapper md-input-filled"><label for="wizard_referer">Guardian Name :</label><input type="text" id="gname" name="gname" class="md-input"      v-model="gname"  v-form-ctrl><span class="md-input-bar"></span></div>                
-                                       
-                                    </div>
-                                </div>
-
-                                <div class="parsley-row">
-                                    <div class="uk-input-group">
-
-                                        <div class="md-input-wrapper md-input-filled"><label for="wizard_referer">Guardian Phone N<u>o</u> :</label><input type="text" id="gphone" name="gphone" class="md-input" data-parsley-type="digits" minlength="10"     maxlength="10" v  pattern='^[0-9]{10}$'  v-model="gphone"  v-form-ctrl><span class="md-input-bar"></span></div>                
-                                        <p  class=" uk-text-danger uk-text-small  "   v-if="updateForm.gphone.$invalid">Please enter a valid phone number of 10 digits</p>                                      
-                                    </div>
-                                </div>
-
-                                <div class="parsley-row">
-                                    <div class="uk-input-group">
-
-                                        <div class="md-input-wrapper md-input-filled"><label for="wizard_skype">Guardian resident :</label><input type="text" id="onamesk" name="gresident" v-form-ctrl  class="md-input"    v-model="gresident"      /><span class="md-input-bar"></span></div>         
-
-                                    </div>
-                                </div>
-
-                                 <div class="parsley-row">
-                                    <div class="uk-input-group">
-
-                                        <div class="md-input-wrapper md-input-filled"><label for="wizard_skype">Guardian Occupation :</label><input type="text" id="onames" name="goccupation" v-form-ctrl  class="md-input"    v-model="goccupation"      /><span class="md-input-bar"></span></div>         
-
-                                    </div>
-                                </div>
-
-                            </div>
-</section>
+      </section>
 
 </div>
 <div class="actions clearfix "  >

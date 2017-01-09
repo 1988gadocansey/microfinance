@@ -8,6 +8,7 @@ package com.gadeksystems.banking.models;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -16,26 +17,27 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EntityListeners(AuditingEntityListener.class)
 @EnableJpaAuditing
 @Entity
-@Table(name = "accounts")
+@Table(name = "account")
 public class Account implements Serializable{
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -3254406057751181181L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
-    @Column(name="id")
+    @Column(name="account_id")
     private int id;
+    @Transient 
     private Customer customer;
     @Column(name="name")
     private String name;
     @Column(name="type")
     private String type;
-    @Column(name="accountNumber")
-    private Long number;
+    @Column(name="account_number")
+    private String number;
     @Version
     private Integer version;
     @Column(name="date_created")
     private Date created;
-      @Column(name="last_updated")
+      @Column(name="last_update")
      private Date updated;
 
      @PrePersist
@@ -47,11 +49,20 @@ public class Account implements Serializable{
      protected void onUpdate() {
        updated = new Date();
      }
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer")
     public Customer getCustomer() {
         return customer;
     }
+     public Account(){}
+   /*  public Account(int id,String name,String type,String number,Date created,Date updated){
+    	 this.id=id;
+     	this.name=name;
+     	this.type=type;
+     	this.number=number;
+     	this.created=created;
+     	this.updated=updated;
+     }*/
     public Account(Account account){
     	this.id=account.id;
     	this.name=account.name;
@@ -90,11 +101,11 @@ public class Account implements Serializable{
 		this.type = type;
 	}
 
-	public Long getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(Long number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 

@@ -34,7 +34,8 @@ public class Customer implements Serializable {
   }
   @Transient 
    private Set<Account> accounts;
-  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+  @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "customer")
+
     public Set<Account> getAccounts() {
         return accounts;
     }
@@ -98,9 +99,12 @@ public class Customer implements Serializable {
 	private String marital;
 
           
-	@Column(name ="type")
+	@Column(name ="id_type")
 	private String type;
-         
+   
+	@Column(name ="id_number")
+	private String number;
+    
                
           
         
@@ -387,6 +391,14 @@ public class Customer implements Serializable {
 
 	        return result;
 	    }
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
 	
   
 }

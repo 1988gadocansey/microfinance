@@ -1,14 +1,22 @@
 package com.gadeksystems.banking.service;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
+
+import com.gadeksystems.banking.models.Account;
 import  com.gadeksystems.banking.models.Customer;
 
 import com.gadeksystems.banking.repository.CustomerRepository;
@@ -20,11 +28,15 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Autowired
 	private CustomerRepository customerRepository;
+	@Autowired
+	private EntityManager em=null;
 	 
-	 //private HibernateTemplate  hibernateTemplate;
+	public void setEntityManager(EntityManager em){
+		this.em=em;
+	}
     
 	@Autowired
-    public void setProductRepository(CustomerRepository customerRepository) {
+    public void setCustomerRepository (CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 	@Override
@@ -33,6 +45,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
+ 
 	public Customer  storeCustomer(Customer customer) {
 		 
         
@@ -51,6 +64,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	 
 
+	
 	@Override
 	public void updateCustomer(Customer customer) {
 		// TODO Auto-generated method stub
@@ -68,11 +82,37 @@ public class CustomerServiceImpl implements CustomerService{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	@SuppressWarnings("unchecked")
 	@Override
-	public Customer getCustomerByAccount(String accountNo) {
+	public List getCustomerByAccount(String accountNo) {
+		//return em.createQuery("FROM Account  WHERE number=:a ")
+				//.setParameter("a",accountNo).getResultList();
+		 
+		return  (List) em.createQuery("FROM Account a where a.number=:a").setParameter("a",accountNo).getResultList();
+	 
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Customer> getCustomerByName(String name) {
+		 return em.createQuery("SELECT * FROM customers WHERE concat('firstname'.' '.'othernames'.' '.'lastname' ) LIKE '%',:name,'%' ")
+				.setParameter("name",name).getResultList();
+	}
+	@Override
+	public Collection<Customer> getTransactions(String accountNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public List<Customer> getAccounts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Account getCustomerAccount(int cId) {
+		return  (Account) em.createQuery("FROM Account a where a.customer=:a").setParameter("a",cId).getResultList();
+		 
+	}
+	 
 
 }

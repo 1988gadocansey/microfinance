@@ -1,0 +1,64 @@
+Tips for banking app
+1. Show customers in table on click show full details of customer and transactions logs
+	a. Details in tabs showing biodata,location, last transaction date
+	b. show send sms , send email, send voice sms..
+	c. on the transaction tab show filtering on transactions(eg all deposits, all withdrawals), date calender(or just show time period eg this fiscal year,last week,yesterday,today,last month)
+	d. On reports tabs show generate bank statements and other reports
+
+2. Show Suppliers in table on click show full details of customer and transactions logs
+	a. Details in tabs showing biodata,location, last transaction date
+	b. show send sms , send email, send voice sms..
+
+3. Show Staff in table on click show full details of customer and transactions logs
+	a. Details in tabs showing biodata,location, last transaction date
+	b. show send sms , send email, send voice sms..
+
+
+4. Adding Customers
+	create table customers(
+	firstname varchar(50),
+	lastname varchar(50),
+	othernames varchar(50),
+	title varchar(50),
+	jobTitle varchar(70),
+	telephone varchar(12),
+	mobile varchar(14),
+	website varchar(70),
+	email varchar(70),
+	houseNo varchar(20),
+	contactAddress varchar(70),
+	spouseName varchar(80),
+	residentialAddress varchar(70),
+	type varchar(50)
+	);
+
+	import java.util.Iterator;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
+
+public class HibernateTestDemo {
+ /**
+  * @param args
+  */
+ public static void main(String[] args) 
+ {
+  SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+  Session session = sessionFactory.openSession();
+  session.beginTransaction();
+  
+  String SQL_QUERY = "SELECT student.course, COUNT(student.course) FROM Student student GROUP BY student.course";
+  Query query = session.createQuery(SQL_QUERY);
+    
+  for(Iterator it=query.iterate();it.hasNext();)
+  {
+   Object[] row = (Object[]) it.next();
+   System.out.print("Course Name: " + row[0]);
+   System.out.println(" | Number of Students: " + row[1]);
+  }
+  session.getTransaction().commit();
+  session.close();
+ }
+}

@@ -10,7 +10,7 @@ import java.io.*;
  */
 public class SmsProvider {
 
-	public static void main(String[] args) throws Exception {
+	public void sms() throws Exception {
 		String API_key = "f4ddb163a5ae9b4c94ab";
 		String message = "Sending SMS has never been this fun!";
 		String phone_number = "02xxxxxxxx";

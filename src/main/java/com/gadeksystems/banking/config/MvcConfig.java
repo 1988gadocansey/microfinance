@@ -6,7 +6,13 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+ 
+import org.springframework.core.io.ClassPathResource;
+
 @Configuration
+@EnableCaching
 public class MvcConfig extends WebMvcConfigurerAdapter{
 	
       
@@ -22,5 +28,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 		resolver.setPrefix("/WEB-INF/jsp/");
 		resolver.setSuffix(".jsp");
 		return resolver;
-	}    
+	}
+	 
+
+	    
 }

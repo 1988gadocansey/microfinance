@@ -73,28 +73,17 @@
             <div class="md-card">
                 <div class="md-card-content">
 
-					<form action=" " method="get" accept-charset="utf-8" 
-						id="group">
+					<form action=" " method="Post" accept-charset="utf-8" 
+						id="group"  >
 						<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}" />
 						<div class="uk-grid" data-uk-grid-margin="">
 							
-							<div class="uk-width-medium-1-5">
-								<div class="uk-margin-small-top">
-									<select name='search' id="search" class="md-input" required="">
-										 
-										<option value=''>Search by</option>
-										<option value='name'>Name</option>
-										<option value='account'>Account Number</option>
-
-
-									</select>
-								</div>
-							</div>
+							 
 
 							<div class="uk-width-medium-1-5">
 								<div class="uk-margin-small-top">
-									<input type="text" style="" required="" name="search"
+									<input type="text" style="" required="" name="account"
 										class="md-input"
 										placeholder=" Account number or name">
 								</div>
@@ -147,7 +136,7 @@
                                     <tbody>
                                        <c:forEach var="customer" items="${customers}">
                                          <tr>
-                                         		<td>1</td>
+                                         		  <td>${customer.getId()}</td>
                                                <td>${customer.getName()}</td>
                                                 <td>  <img src="${pageContext.request.contextPath}/photos/customers/gad.jpg" alt="user avatar"/></td>
                                                   <td>${customer.gender}</td>
