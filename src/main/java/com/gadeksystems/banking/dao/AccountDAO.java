@@ -3,11 +3,14 @@ package com.gadeksystems.banking.dao;
 import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.gadeksystems.banking.models.Account;
 import com.gadeksystems.banking.models.Customer;
+import com.gadeksystems.banking.models.Transaction;
  
 public interface AccountDAO {
-	Account createAccount(Account account);
+	void createAccount(Account account,Transaction transaction,HttpServletRequest request);
 	Account findAccountByName(String name);
 	Account findAccountByNumber(String number);
 	Account withdraw(String number,double amount);

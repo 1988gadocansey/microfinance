@@ -27,9 +27,9 @@
                 </div>
               </div>
            </c:if>
-  </div>
+  
  <div class="login_heading">
-                    <img src="${pageContext.request.contextPath}/logins/images/logo.png"class="thumbnail" style="width:120px;height: auto"/>
+                    <img src="${pageContext.request.contextPath}/assets/logo.png"class="thumbnail" style="width:182px;height: auto"/>
                 </div>
             <center><h4 class="uk-text-primary uk-text-upper uk-text-large">UNITED WORKERS CO OPERATIVE CREDIT UNION</h4></center>
         <div class="md-card" id="login_card">
@@ -37,8 +37,8 @@
                
                 <form action="/login" method="Post">
                     <div class="uk-form-row">
-                        <label for="login_username">Agent Code</label>
-                        <input class="md-input" type="text" required="" id="login_username" name="email"  />
+                        <label for="login_username">Email</label>
+                        <input class="md-input" type="email" required="" id="login_username" name="email"  />
                     
                     </div>
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -56,6 +56,8 @@
                             <label for="login_page_stay_signed" class="inline-label">Stay signed in</label>
                         </span>
                     </div>
+                    <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
                 </form>
             </div>
              
@@ -63,7 +65,7 @@
         </div>
            <div class="row"><%java.text.DateFormat df = new java.text.SimpleDateFormat("yyyy"); %>
  
-            <center><small style="font-size: 11px">&copy <%= df.format(new java.util.Date()) %>  United Workers Credit Union - Powered by Gadeksystems | Cape Coast</small></center>         
+            <center><small style="font-size: 11px">&copy <%= df.format(new java.util.Date()) %>   Powered by Gadeksystems - 0505284060 | Cape Coast</small></center>         
         </div>
           
            </div>

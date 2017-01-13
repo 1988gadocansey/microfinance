@@ -401,7 +401,7 @@
                 </li>
             
          </security:authorize>
-         <security:authorize access="hasRole('USER')">
+       
                  <li data-uk-dropdown class="uk-hidden-small">
                     <a href="#"> <span class="menu_icon"><i class="material-icons">lock</i></span><span>My Account</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
@@ -412,7 +412,7 @@
                         </ul>
                     </div>
                 </li>
-         </security:authorize> 
+       
          
           
          	  <li class="uk-hidden-small"><a href='/'><i title='home'class="material-icons">timer</i><span id="demo"> </span></a></li>

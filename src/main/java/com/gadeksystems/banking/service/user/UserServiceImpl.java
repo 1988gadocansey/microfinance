@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getUserByEmail(String email) {
+    public User getUserByEmail(String email) {
         LOGGER.debug("Getting user by email={}", email.replaceFirst("@.*", "@***"));
         return userRepository.findOneByEmail(email);
     }
@@ -50,5 +50,17 @@ public class UserServiceImpl implements UserService {
         user.setRole(form.getRole());
         return userRepository.save(user);
     }
+
+	@Override
+	public User save(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean validateEmail(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

@@ -29,7 +29,7 @@
            </c:if>
   
  <div class="login_heading">
-                    <img src="${pageContext.request.contextPath}/logins/logo.jpg"class="thumbnail" style="width:182px;height: auto"/>
+                    <img src="${pageContext.request.contextPath}/assets/logo.png"class="thumbnail" style="width:182px;height: auto"/>
                 </div>
             <center><h4 class="uk-text-primary uk-text-upper uk-text-large">UNITED WORKERS CO OPERATIVE CREDIT UNION</h4></center>
         <div class="md-card" id="login_card">

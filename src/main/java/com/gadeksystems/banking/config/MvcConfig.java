@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.gadeksystems.banking.providers.SmsProvider;
+
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -29,6 +32,10 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
+    @Bean
+    public SmsProvider provider() {
+        return new SmsProvider();
+    }
 	 
 
 	    

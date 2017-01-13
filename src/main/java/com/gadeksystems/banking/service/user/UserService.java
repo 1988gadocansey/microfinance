@@ -10,10 +10,11 @@ public interface UserService {
 
     Optional<User> getUserById(long id);
 
-    Optional<User> getUserByEmail(String email);
+    User getUserByEmail(String email);
+    User save(User user);
 
     Collection<User> getAllUsers();
 
     User create(UserCreateForm form);
-
+    boolean validateEmail(String email);
 }

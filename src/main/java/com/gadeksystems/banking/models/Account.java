@@ -10,6 +10,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.*;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -23,18 +25,30 @@ public class Account implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
+     
     @Column(name="account_id")
+    
     private int id;
-    @Transient 
-    private Customer customer;
+    @Column(name="customer")
+    private String customer;
     @Column(name="name")
     private String name;
     @Column(name="type")
     private String type;
-    @Column(name="account_number")
+    @NotEmpty
+    @Column(name="account_number",unique = true)
     private String number;
+    @Column(name="opening_balance")
+    private double balance;
+    
+    
+    @Column(name="created_by")
+    private String owner;
+    
     @Version
     private Integer version;
+   
+   
     @Column(name="date_created")
     private Date created;
       @Column(name="last_update")
@@ -49,11 +63,7 @@ public class Account implements Serializable{
      protected void onUpdate() {
        updated = new Date();
      }
-     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer")
-    public Customer getCustomer() {
-        return customer;
-    }
+      
      public Account(){}
    /*  public Account(int id,String name,String type,String number,Date created,Date updated){
     	 this.id=id;
@@ -68,14 +78,14 @@ public class Account implements Serializable{
     	this.name=account.name;
     	this.type=account.type;
     	this.number=account.number;
+    	this.customer=account.customer;
+    	this.balance=account.balance;
     	this.created=account.created;
     	this.updated=account.updated;
     	 
     	
     }
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+    
 
 	public int getId() {
 		return id;
@@ -131,5 +141,29 @@ public class Account implements Serializable{
 
 	public void setUpdated(Date updated) {
 		this.updated = updated;
+	}
+
+	public String getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(String string) {
+		this.customer = string;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 }

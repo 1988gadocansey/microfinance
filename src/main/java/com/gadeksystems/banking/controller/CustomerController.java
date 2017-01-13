@@ -35,7 +35,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @Autowired
-    public void setProductService(CustomerService customerService) {
+    public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
     }
     
@@ -69,7 +69,7 @@ public class CustomerController {
     
     }
     @RequestMapping("/management/customers/account/open/{id}")
-    public String showProduct(@PathVariable Integer id, Model model,Customer customer){
+    public String showCustomer(@PathVariable Integer id, Model model,Customer customer){
         model.addAttribute("customer", customerService.getCustomerById(id));
         /*Map<String, Object> model = new HashMap<String, Object>();
         model.put("publications",  publicationService.getPublications());

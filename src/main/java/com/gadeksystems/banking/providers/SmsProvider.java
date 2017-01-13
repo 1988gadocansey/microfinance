@@ -2,19 +2,23 @@ package com.gadeksystems.banking.providers;
 
 
 import java.net.*;
+
+import org.springframework.stereotype.Component;
+
 import java.io.*;
 
 /**
  *
  * @author gadoo
  */
+ 
+ 
 public class SmsProvider {
 
-	public void sms() throws Exception {
-		String API_key = "f4ddb163a5ae9b4c94ab";
-		String message = "Sending SMS has never been this fun!";
-		String phone_number = "02xxxxxxxx";
-		String sender_id = "xxxxxxxxxx"; // 11 characters
+	public void sms(String message,String phone_number) throws Exception {
+		String API_key = "bcb86ecbc1a058663a07";
+		 
+		String sender_id = "MicroBank"; // 11 characters
 
 		/******************* API URL FOR SENDING MESSAGES ********/
 		URL url = new URL("https://apps.mnotify.net/api/smsapi?key=" + API_key + "&to=" + phone_number + "&msg="
