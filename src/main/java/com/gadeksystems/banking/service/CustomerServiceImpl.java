@@ -88,7 +88,7 @@ public class CustomerServiceImpl implements CustomerService{
 		//return em.createQuery("FROM Account  WHERE number=:a ")
 				//.setParameter("a",accountNo).getResultList();
 		 
-		return  (List) em.createQuery("FROM Account a where a.number=:a").setParameter("a",accountNo).getResultList();
+		return  (List) em.createQuery("FROM Account a where a.number=:a GROUP BY a.number").setParameter("a",accountNo).getResultList();
 	 
 	}
 	@SuppressWarnings("unchecked")

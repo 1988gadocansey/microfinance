@@ -16,7 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 @Entity
 @Table(name = "transactions")
-public class Transaction implements Serializable {
+public class Transactions implements Serializable {
 	
 	 	private static final long serialVersionUID = -3254406057751181181L;
 	 	@Id
@@ -33,7 +33,7 @@ public class Transaction implements Serializable {
 	    private String description;
 	    @NotNull
 	    @Column(name="amount")
-	    private double amount;
+	    private String amount;
 	    @NotEmpty
 	    @Column(name="type")
 	    private String type;
@@ -51,10 +51,10 @@ public class Transaction implements Serializable {
 	    protected void onCreate() {
 	       date= new Date();
 	    }
-	    public Transaction(){
+	    public Transactions(){
 	    	
 	    }
-	    public Transaction(Transaction transaction){
+	    public Transactions(Transactions transaction){
 	    	this.id=transaction.id;
 	    	this.type=transaction.type;
 	    	this.amount=transaction.amount;
@@ -88,10 +88,10 @@ public class Transaction implements Serializable {
 		public void setDescription(String description) {
 			this.description = description;
 		}
-		public double getAmount() {
+		public String getAmount() {
 			return amount;
 		}
-		public void setAmount(double amount) {
+		public void setAmount(String amount) {
 			this.amount = amount;
 		}
 		public Date getDate() {

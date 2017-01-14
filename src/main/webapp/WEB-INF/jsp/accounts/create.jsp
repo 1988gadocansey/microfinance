@@ -177,7 +177,7 @@ select {
 												<div class="uk-width-medium-1-2">
 													<label for="user_edit_uname_control">Account Name</label> <input
 														class="md-input" type="text" id="user_edit_uname_control"
-														required="" name="name" />
+														required="" name="name" value="${customer.getName()}" />
 												</div>
 												<div class="uk-width-medium-1-2">
 													<label for="user_edit_position_control">Account
@@ -190,10 +190,10 @@ select {
 													<div class="uk-width-medium-1-2">
 													<label class="uk-form-label" for="user_edit_role"> 
 														Account Type</label> <select   required="required" class="md-input" name="type">
-														<option value="">Select Accoun type</option>
+														<option value="">Select Account type</option>
 														<option value="Susu">Susu Account</option>
 														<option value="Child Support">Child Support Account</option>
-														<option value="Current" selected>Current Account</option>
+														<option value="Current"  >Current Account</option>
 														<option value="Savings">Savings</option>
 														 
 													</select>

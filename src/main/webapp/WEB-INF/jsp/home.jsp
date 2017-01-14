@@ -10,7 +10,7 @@
 <link href='${pageContext.request.contextPath}/assets/plugins/uikit/css/uikit.almost-flat.min.css' type="text/css" rel="stylesheet" media="screen,projection">
   <link href='${pageContext.request.contextPath}/assets/css/login_page.min.css' type="text/css" rel="stylesheet" media="screen,projection">
    
-   <title>Login | Savoy Microfinance</title>
+   <title>Login | United Workers Cooperative Credit Union</title>
 </head>
 <body class="login_page">
 

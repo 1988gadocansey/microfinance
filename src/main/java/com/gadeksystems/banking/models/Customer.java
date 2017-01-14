@@ -32,10 +32,9 @@ public class Customer implements Serializable {
   protected void onUpdate() {
     updated = new Date();
   }
+@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "customer")
   @Transient 
    private Set<Account> accounts;
-  @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "customer")
-
     public Set<Account> getAccounts() {
         return accounts;
     }

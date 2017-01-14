@@ -25,8 +25,8 @@
                     <div class="md-card">
                         <div class="md-card-content">
                          <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class=""><i class="sidebar-menu-icon material-icons md-36">event_note</i></span></div>
-                            <span class="uk-text-muted uk-text-small">Finance Year</span>
-                            <h5 class="uk-margin-remove"><span class="uk-text-small uk-text-success "> 2017 </span></h5>
+                            <span class="uk-text-muted uk-text-small">Academic Calender</span>
+                            <h5 class="uk-margin-remove"><span class="uk-text-small uk-text-success "> Semester </span></h5>
                         </div>
                     </div>
                 </div>
@@ -36,8 +36,8 @@
                     <div class="md-card">
                         <div class="md-card-content">
                          <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class=""><i class="sidebar-menu-icon material-icons md-36">event_note</i></span></div>
-                            <span class="uk-text-muted uk-text-small">Total Customers</span>
-                            <h5 class="uk-margin-remove"><span class="uk-text-small uk-text-success "> Total</span></h5>
+                            <span class="uk-text-muted uk-text-small">Total Male Students</span>
+                            <h5 class="uk-margin-remove"><span class="uk-text-small uk-text-success "> Male</span></h5>
                         </div>
                     </div>
                 </div>
@@ -45,8 +45,8 @@
                     <div class="md-card">
                         <div class="md-card-content">
                          <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class=""><i class="sidebar-menu-icon material-icons md-36">event_note</i></span></div>
-                            <span class="uk-text-muted uk-text-small">Total Profit</span>
-                            <h5 class="uk-margin-remove"><span class="uk-text-small uk-text-success "> GHC </span></h5>
+                            <span class="uk-text-muted uk-text-small">Total Female  Students</span>
+                            <h5 class="uk-margin-remove"><span class="uk-text-small uk-text-success "> Females </span></h5>
                         </div>
                     </div>
                 </div>
@@ -59,16 +59,16 @@
                 <div>
                     <div class="md-card md-card-hover md-card-overlay">
                         <div class="md-card-content">
-                            <a target="_" href='/transactions/view'>  <img src="${pageContext.request.contextPath}/assets/img/dashboard/registration.png"/></a>
+                            <a target="_" href='/'>  <img src="${pageContext.request.contextPath}/assets/img/dashboard/registration.png"/></a>
                         </div>
                         <div class="md-card-overlay-content">
                             <div class="uk-clearfix md-card-overlay-header">
                                 <i class="md-icon material-icons md-card-overlay-toggler">&#xE5D4;</i>
                                 <h3 class="uk-text-center uk-text-upper">
-                                   DEPOSIT/WITHDRAWALS
+                                    REGISTER STUDENTS
                                 </h3>
                             </div>
-                           Click here to view transactions
+                           Click here to register students
                         </div>
                     </div>
                 </div>
@@ -76,16 +76,16 @@
                 <div>
                     <div class="md-card md-card-hover md-card-overlay">
                         <div class="md-card-content">
-                            <a  href='#'>  <img src="${pageContext.request.contextPath}/assets/img/dashboard/transcript.png"/></a>
+                            <a  href='/'>  <img src="${pageContext.request.contextPath}/assets/img/dashboard/transcript.png"/></a>
                         </div>
                         <div class="md-card-overlay-content">
                             <div class="uk-clearfix md-card-overlay-header">
                                 <i class="md-icon material-icons md-card-overlay-toggler">&#xE5D4;</i>
                                 <h3 class="uk-text-center uk-text-upper">
-                                    ACCOUNT STATEMENTS
+                                    PRINT RESULTS
                                 </h3>
                             </div>
-                            Print Official statement of account for customers
+                            Print Official result for students after they have paid at the Accounts Office
                         </div>
                     </div>
                 </div>
@@ -98,10 +98,10 @@
                             <div class="uk-clearfix md-card-overlay-header">
                                 <i class="md-icon material-icons md-card-overlay-toggler">&#xE5D4;</i>
                                 <h3 class="uk-text-center uk-text-upper">
-                                   UPLOAD CUSTOMERS ACCOUNT DATA
+                                   UPLOAD RESULTS
                                 </h3>
                             </div>
-                            <p>Upload Previous data of customers from Excel</p>
+                            <p>Upload semester results here. Only registered students results can be uploaded</p>
                             <button class="md-btn md-btn-primary">More</button>
                         </div>
                     </div>
@@ -117,26 +117,26 @@
                             <div class="uk-clearfix md-card-overlay-header">
                                 <i class="md-icon material-icons md-card-overlay-toggler">&#xE5D4;</i>
                                 <h3 class="uk-text-center uk-text-upper">
-                                    GENERATE REPORT
+                                    CLASS LIST
                                 </h3>
                             </div>
-                          Generate reports
+                           View registered students for your courses and enter marks
                         </div>
                     </div>
                 </div>
                  <div>
                      <div class="md-card md-card-hover md-card-overlay">
                         <div class="md-card-content">
-                            <a  href='/management/customers'>  <img src="${pageContext.request.contextPath}/assets/img/dashboard/classgroup.png"/></a>
+                            <a  href='/'>  <img src="${pageContext.request.contextPath}/assets/img/dashboard/classgroup.png"/></a>
                         </div>
                         <div class="md-card-overlay-content">
                             <div class="uk-clearfix md-card-overlay-header">
                                 <i class="md-icon material-icons md-card-overlay-toggler">&#xE5D4;</i>
                                 <h3 class="uk-text-center uk-text-upper">
-                                   CUSTOMERS <small>(Total )</small>
+                                    STAFF <small>(Total )</small>
                                 </h3>
                             </div>
-                           View your customers
+                           View your staffs
                         </div>
                     </div>
                 </div>

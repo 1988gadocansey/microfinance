@@ -249,11 +249,10 @@
                     <a href="#"><i class="sidebar-menu-icon material-icons md-18">work</i><span>Transactions</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
                         <ul class="uk-nav uk-nav-dropdown">
-                        	 <li><a href="/management/customers/create">Open Account</a></li>
-                            <li><a href="/programmes">Deposit</a></li>
-                            <li><a href="/programmes">Withdrawals</a></li>
-                            <li><a href="/programmes">Accounts Transfers</a></li>
-                            <li><a href="/programmes">Check Account Balance</a></li>                  
+                        	  <li><a href="/transactions/accounts/deposit">Deposit</a></li>
+                            <li><a href="/transactions/accounts/withdrawals">Withdrawals</a></li>
+                           <!-- <li><a href="/transactions/accounts/transfers">Accounts Transfers</a></li>
+                            <li><a href="/transactions/accounts/balance">Check Account Balance</a></ li> -->                 
                         </ul>
                     </div>
            </li>
@@ -264,11 +263,14 @@
                     <a href="#"><i class="sidebar-menu-icon material-icons md-18">supervisor_account</i><span>Customer Care</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
                         <ul class="uk-nav uk-nav-dropdown">
-                            <li><a href="/management/customers/create">Add Customers</a></li>
+                             <li><a href="/management/customers/create">Open Account</a></li>
+                          
                             <li><a href="/management/customers">View Customers</a></li>
-                            <li><a href="/programmes">Check Account Balance</a></li>
-                            <li><a href="/programmes">Print Account Statements</a></li>
-                            <li><a href="/programmes">Application for Passbook</a></li>                  
+                            <li><a href="/management/accounts">View Accounts</a></li>
+                           <!-- <li><a href="/transactions/accounts/balance">Check Account Balance</a></li>
+                            <li><a href="/management/customers/statement">Print Account Statements</a></li>
+                            <li><a href="/management/customers/passbook">Application for Passbook</a></li>                  
+                        -->
                         </ul>
                     </div>
                 </li>
@@ -280,10 +282,11 @@
                     <a href="#"><i class="sidebar-menu-icon material-icons md-18">work</i><span>Accounting</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
                         <ul class="uk-nav uk-nav-dropdown">
-                            <li><a href="/programmes">Trading Profit and Loss</a></li>
+                           <!-- <li><a href="/programmes">Trading Profit and Loss</a></li>
                             <li><a href="/programmes">Balance Sheet</a></li>
                             <li><a href="/programmes">Cash Flow Statement</a></li>
-                            <li><a href="/programmes">Amortizations</a></li>                  
+                            <li><a href="/programmes">Amortizations</a></li>          <li><a href="/transactions/accounts/balance">Check Account Balance</a></li>-->
+                    <li><a href="/transactions/view">Transactions Ledger</a></li>          
                         </ul>
                     </div>
            </li>
@@ -353,17 +356,35 @@
             
             
             
-        <security:authorize access="hasRole('TELLER')">
+        <security:authorize access="hasAuthority('TELLER')">
             <li data-uk-dropdown class="uk-hidden-small">
 
                   
-                    <a href="#"><i class="sidebar-menu-icon material-icons md-18">account_balance</i><span>Banking</span></a>
+                    
+                    <a href="#"><i class="sidebar-menu-icon material-icons md-18">work</i><span>Transactions</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
                         <ul class="uk-nav uk-nav-dropdown">
-                            <li><a href="/programmes">Deposit</a></li>
-                            <li><a href="/programmes">Withdrawals</a></li>
-                            <li><a href="/programmes">Accounts Transfers</a></li>
-                            <li><a href="/programmes">Check Account Balance</a></li>                  
+                        	  <li><a href="/transactions/accounts/deposit">Deposit</a></li>
+                            <li><a href="/transactions/accounts/withdrawals">Withdrawals</a></li>
+                           <!-- <li><a href="/transactions/accounts/transfers">Accounts Transfers</a></li>
+                            <li><a href="/transactions/accounts/balance">Check Account Balance</a></ li> -->                 
+                        </ul>
+                    </div>
+                </li>
+                  <li data-uk-dropdown class="uk-hidden-small">
+
+                  
+                    <a href="#"><i class="sidebar-menu-icon material-icons md-18">supervisor_account</i><span>Customer Care</span></a>
+                    <div class="uk-dropdown uk-dropdown-scrollable">
+                        <ul class="uk-nav uk-nav-dropdown">
+                             <li><a href="/management/customers/create">Open Account</a></li>
+                          
+                            <li><a href="/management/customers">View Customers</a></li>
+                            <li><a href="/management/accounts">View Accounts</a></li>
+                           <!-- <li><a href="/transactions/accounts/balance">Check Account Balance</a></li>
+                            <li><a href="/management/customers/statement">Print Account Statements</a></li>
+                            <li><a href="/management/customers/passbook">Application for Passbook</a></li>                  
+                        -->
                         </ul>
                     </div>
                 </li>
@@ -406,7 +427,7 @@
                     <a href="#"> <span class="menu_icon"><i class="material-icons">lock</i></span><span>My Account</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
                         <ul class="uk-nav uk-nav-dropdown">
-                          <li><a href="/programmes">Change Password</a></li>
+                        <!--  <li><a href="/programmes">Change Password</a></li> -->
                           <li><a href="<c:url value="/logout" />">Logout</a></li>
                                 
                         </ul>

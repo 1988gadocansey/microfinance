@@ -10,4 +10,5 @@ import com.gadeksystems.banking.models.Customer;
 @Repository("customerRepository")
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 	Customer findByEmail(String email);
+	Customer findById(String id);
 }

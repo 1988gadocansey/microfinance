@@ -15,7 +15,7 @@ import java.io.*;
  
 public class SmsProvider {
 
-	public void sms(String message,String phone_number) throws Exception {
+	public String sms(String message,String phone_number) throws Exception {
 		String API_key = "bcb86ecbc1a058663a07";
 		 
 		String sender_id = "MicroBank"; // 11 characters
@@ -26,26 +26,28 @@ public class SmsProvider {
 
 		/**************** API URL TO CHECK BALANCE ****************/
 		//URL url = new URL("https://apps.mnotify.net/api/smsapibalance?key=" + API_key);
-
+		String result=null;
 		URLConnection connection = url.openConnection();
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		String inputLine;
 		inputLine = in.readLine().trim();
 		if (inputLine.equals("1000")) {
-			System.out.println("Message sent");
+			result="Message sent";
 		} else if (inputLine.equals("1002")) {
-			System.out.println("Message not sent");
+			result="Message not sent" ;
 		} else if (inputLine.equals("1003")) {
-			System.out.println("You don't have enough balance");
+			result="You don't have enough balance" ;
 		} else if (inputLine.equals("1004")) {
-			System.out.println("Invalid API Key");
+			result="Invalid API Key" ;
 		} else if (inputLine.equals("1005")) {
-			System.out.println("Phone number not valid");
+			result="Phone number not valid" ;
 		} else if (inputLine.equals("1006")) {
-			System.out.println("Invalid Sender ID");
+			result="Invalid Sender ID" ;
 		} else if (inputLine.equals("1008")) {
-			System.out.println("Empty message");
+			result="Empty message" ;
 		}
 		in.close();
+		 return result;
 	}
+	
 }
