@@ -132,9 +132,10 @@
                                                  <td>${object.type}</td>    
                                              <td>${object.created}</td>
                                                <td>${object.owner}</td>
-                                            <td> 
+                                            <td class="uk-text-nowrap">
+                                                <a href="/management/accounts/show/${object.id}"><i class="material-icons md-24">&#xE8F4;</i></a> 
+                                                <a href="/management/accounts/edit/${object.id}" class="uk-margin-left"><i class="material-icons md-24">edit</i></a>
                                                 
-                                            
                                             </td>
                                           
                                         </tr>

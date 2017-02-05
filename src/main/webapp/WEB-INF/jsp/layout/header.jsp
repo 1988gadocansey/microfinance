@@ -12,8 +12,8 @@
     <!-- Remove Tap Highlight on Windows Phone IE -->
     <meta name="msapplication-tap-highlight" content="no"/>
     <meta name="_token" content="{!! csrf_token() !!}"/>
-    <link rel="icon" type="image/png" href="public/assets/img/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="public/assets/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/img/favicon-32x32.png" sizes="32x32">
 
     <title>United Workers Cooperative Credit Union</title>
 	 <script>
@@ -265,12 +265,13 @@
                         <ul class="uk-nav uk-nav-dropdown">
                              <li><a href="/management/customers/create">Open Account</a></li>
                           
-                            <li><a href="/management/customers">View Customers</a></li>
+                           
                             <li><a href="/management/accounts">View Accounts</a></li>
                            <!-- <li><a href="/transactions/accounts/balance">Check Account Balance</a></li>
                             <li><a href="/management/customers/statement">Print Account Statements</a></li>
                             <li><a href="/management/customers/passbook">Application for Passbook</a></li>                  
                         -->
+                         <li><a href="/management/customers">View Customers</a></li>
                         </ul>
                     </div>
                 </li>
@@ -279,17 +280,35 @@
            <li data-uk-dropdown class="uk-hidden-small">
 
                   
-                    <a href="#"><i class="sidebar-menu-icon material-icons md-18">work</i><span>Accounting</span></a>
+                    <a href="#"><i class="sidebar-menu-icon material-icons md-18">work</i><span>Reporting</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
                         <ul class="uk-nav uk-nav-dropdown">
                            <!-- <li><a href="/programmes">Trading Profit and Loss</a></li>
                             <li><a href="/programmes">Balance Sheet</a></li>
                             <li><a href="/programmes">Cash Flow Statement</a></li>
                             <li><a href="/programmes">Amortizations</a></li>          <li><a href="/transactions/accounts/balance">Check Account Balance</a></li>-->
-                    <li><a href="/transactions/view">Transactions Ledger</a></li>          
-                        </ul>
+                    <li><a href="/transactions/view">Transactions Ledger</a></li>
+                     
+                   <li><a href="/transactions/view">Ledger Balances</a></li>
+                          
+                  <li><a href="/transactions/accounts/balance">Account Statements</a></li>
+                 
+                    </ul>
                     </div>
            </li>
+             <li data-uk-dropdown class="uk-hidden-small">
+
+                  
+                    <a href="#"><i class="sidebar-menu-icon material-icons md-18">work</i><span>Loans</span></a>
+                    <div class="uk-dropdown uk-dropdown-scrollable">
+                        <ul class="uk-nav uk-nav-dropdown">
+                            <li><a href="/programmes">Loan Rules</a></li>
+                            <li><a href="/programmes">Check Loan eligibility</a></li>
+                            <li><a href="/programmes">Loan Applications</a></li>
+                            <li><a href="/programmes">Loan Statement</a></li>                  
+                        </ul>
+                    </div>
+                </li>
          </security:authorize>
          <security:authorize access="hasRole('ACCOUNTANT')">
             <li data-uk-dropdown class="uk-hidden-small">
@@ -308,7 +327,7 @@
            <li data-uk-dropdown class="uk-hidden-small">
 
                   
-                    <a href="#"><i class="sidebar-menu-icon material-icons md-18">work</i><span>Accounting</span></a>
+                    <a href="#"><i class="sidebar-menu-icon material-icons md-18">work</i><span>Reporting</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
                         <ul class="uk-nav uk-nav-dropdown">
                             <li><a href="/programmes">Trading Profit and Loss</a></li>
@@ -422,7 +441,7 @@
                 </li>
             
          </security:authorize>
-       
+       <security:authorize >
                  <li data-uk-dropdown class="uk-hidden-small">
                     <a href="#"> <span class="menu_icon"><i class="material-icons">lock</i></span><span>My Account</span></a>
                     <div class="uk-dropdown uk-dropdown-scrollable">
@@ -433,6 +452,7 @@
                         </ul>
                     </div>
                 </li>
+      </security:authorize>
        
          
           

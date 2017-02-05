@@ -13,7 +13,7 @@ public interface CustomerService {
 	Customer getCustomerById(int cId);
 	List<Customer> getCustomerByName(String name);
 	List<Account> getCustomerByAccount(String accountNo);
-	Account getCustomerAccount(int cId);
+	String getCustomerAccount(int cId);
     void updateCustomer(Customer customer);
     void deleteCustomer(int cId);
     boolean customerExists(String name);

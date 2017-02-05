@@ -67,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Override
 	public void updateCustomer(Customer customer) {
-		// TODO Auto-generated method stub
+		 em.merge(customer);
 		
 	}
 
@@ -109,9 +109,10 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public Account getCustomerAccount(int cId) {
-		return  (Account) em.createQuery("FROM Account a where a.customer=:a").setParameter("a",cId).getResultList();
-		 
+	public String getCustomerAccount(int cId) {
+		Query q= em.createQuery("FROM Account a where a.customer=:a").setParameter("a",cId);
+		 Account a=(Account) q.getSingleResult();
+		 return a.getNumber().toString();
 	}
 	 
 

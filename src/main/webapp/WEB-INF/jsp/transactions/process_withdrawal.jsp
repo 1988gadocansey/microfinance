@@ -47,7 +47,7 @@
                                     
                                 <center>
                      
-                         <button  v-show="applicationForm.$valid" type="submit" class="md-btn md-btn-primary"><i class="fa fa-save" ></i>Deposit</button>
+                         <button  v-show="applicationForm.$valid" type="submit" class="md-btn md-btn-primary"><i class="fa fa-save" ></i>Withdraw</button>
                     
                   
             </center>

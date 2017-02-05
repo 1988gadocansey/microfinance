@@ -19,12 +19,13 @@ public interface AccountDAO {
 	void deposit(Account account,Transactions transaction,HttpServletRequest request,Sms mysms);
 	Account transfer(Account account,double amount);
 	// Transactions  balance(String number);//get customer account balance
-    void updateAccount(Account account);
+    void updateAccount(int id,double balance,String name,String type,String number);
     void deleteAccount(int cId);
     Iterable<Account> getAllAccount();
     Iterable<Account> getStatements(String accountNo);
-    boolean accountExists(String accountNo);
-    boolean canWithdraw(String accountNo,double amount);
+    String accountExists(String accountNo);
+    boolean canWithdraw(long accountNo,double amount);
     boolean canTransfer(String accountNo,double amount);
     List<Account> searchAccount(String number);
+    Account findAccountByCustomerID(int id);
 }

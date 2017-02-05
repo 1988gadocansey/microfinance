@@ -64,16 +64,22 @@ public class TransactionController {
     }
     @PostMapping("transactions/deposit/interface")
     public String doDepositView(Model model,HttpServletRequest request){
+    	if(accountService.accountExists(request.getParameter("account"))=="1"){
     	model.addAttribute("account", accountService.findAccountByNumber(request.getParameter("account")));
         
     	return "transactions/process_deposit";
+    	}
+    	return "search_deposit";
     }
     
     @PostMapping("transactions/withdrawals/interface")
     public String doWithdrawalView(Model model,HttpServletRequest request){
+    	if(accountService.accountExists(request.getParameter("account"))=="1"){
     	model.addAttribute("account", accountService.findAccountByNumber(request.getParameter("account")));
-        
-    	return "transactions/process_withdrawal";
+    	  return "transactions/process_withdrawal";
+    	}
+    	 return "search_withdrawal";
+    	
     }
     @PostMapping("transactions/accounts/deposit")
     public String processDeposit(  Account account,Transactions transaction, BindingResult result, Model model, HttpServletRequest request,Sms mysms){
@@ -86,7 +92,7 @@ public class TransactionController {
 
          
         
-        return "redirect:/management/accounts/";
+            return "redirect:/transactions/view/";
     }
 
 
@@ -101,7 +107,7 @@ public class TransactionController {
 
         
         
-        return "redirect:/management/accounts/";
+        return "redirect:/transactions/view/";
     }
 
 
@@ -111,4 +117,5 @@ public class TransactionController {
         
         return "transactions/index";
     }
+    
 }

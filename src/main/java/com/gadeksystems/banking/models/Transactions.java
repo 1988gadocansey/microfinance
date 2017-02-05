@@ -28,7 +28,7 @@ public class Transactions implements Serializable {
 	    private int account;
 	 	@NotNull
 	    @Column(name="account_number")
-	    private int accountNumber;
+	    private long accountNumber;
 	    @Column(name="description")
 	    private String description;
 	    @NotNull
@@ -76,10 +76,10 @@ public class Transactions implements Serializable {
 		public void setAccount(int account) {
 			this.account = account;
 		}
-		public int getAccountNumber() {
+		public long getAccountNumber() {
 			return accountNumber;
 		}
-		public void setAccountNumber(int accountNumber) {
+		public void setAccountNumber(long accountNumber) {
 			this.accountNumber = accountNumber;
 		}
 		public String getDescription() {

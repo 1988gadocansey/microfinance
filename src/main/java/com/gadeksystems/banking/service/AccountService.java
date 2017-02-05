@@ -3,6 +3,8 @@ package com.gadeksystems.banking.service;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +13,14 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import com.gadeksystems.banking.dao.AccountDAO;
+import com.gadeksystems.banking.handlers.NotFoundException;
 import com.gadeksystems.banking.models.Account;
 import com.gadeksystems.banking.models.Customer;
 import com.gadeksystems.banking.models.Sms;
@@ -38,6 +42,8 @@ public class AccountService implements AccountDAO {
 	   
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private TransactionService transactionService;
 	@Autowired
 	private AccountRepository accountRepository;
 	@Autowired
@@ -136,6 +142,8 @@ public class AccountService implements AccountDAO {
          @Override
 	public void withdraw(Account account, Transactions transaction, HttpServletRequest request,Sms mysms) {
 			LOGGER.debug("withdrawing " + request.getParameter("amount") + "for account number " +request.getParameter("number"));
+	if(this.accountExists(request.getParameter("number"))=="1"){
+		if(this.canWithdraw(Long.parseLong(request.getParameter("number")),Double.parseDouble(request.getParameter("amount")))==true){
 		String message=null;
 		String result=null;
 		int customer=0;
@@ -167,10 +175,12 @@ public class AccountService implements AccountDAO {
 		// sms should follow with the new account details and deposit
 		
 		double amountt = Double.parseDouble(request.getParameter("amount"));
-		 double balance;
-            // balance = (Double)this.balance(request.getParameter("number"));
-                 LOGGER.debug("Getting all transaction balance "  );
-		  message = "Hi " + name + " an amount of   " + amountt + "has been withdrawn from your account";
+		double balance;
+        balance = Double.parseDouble(transactionService.balance(Long.parseLong(request.getParameter("number"))));
+             LOGGER.debug("Getting all transaction balance "  );
+	  message = "Hi " + name  + amountt + "has been withdrawn from your account your account balance is GHS"+balance; ;
+
+		  //message = "Hi " + name + " an amount of   " + amountt + "has been withdrawn from your account";
 
 		try {
 			
@@ -186,6 +196,16 @@ public class AccountService implements AccountDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		}
+		else{
+			}
+		}
+		 
+	
+
+	else{
+		 
+	}
 	}
 	 
 //	public  Transactions balance(String number) {
@@ -201,6 +221,7 @@ public class AccountService implements AccountDAO {
 	@Override
 	public void deposit(Account account, Transactions transaction, HttpServletRequest request,Sms mysms) {
 		LOGGER.debug("depositing " + request.getParameter("amount") + "for account number " +request.getParameter("number"));
+		if(this.accountExists(request.getParameter("number"))=="1"){
 		String message=null;
 		String result=null;
 		int customer=0;
@@ -233,9 +254,9 @@ public class AccountService implements AccountDAO {
 		
 		double amountt = Double.parseDouble(request.getParameter("amount"));
 		 double balance;
-            // balance = (Double)this.balance(request.getParameter("number"));
+            balance = Double.parseDouble(transactionService.balance(Long.parseLong(request.getParameter("number"))));
                  LOGGER.debug("Getting all transaction balance "  );
-		  message = "Hi " + name + "you have just deposited  " + amountt ;
+		  message = "Hi " + name + "you have just deposited  " + amountt + "your account balance is GHS"+balance; ;
 
 		try {
 			
@@ -252,6 +273,10 @@ public class AccountService implements AccountDAO {
 			e.printStackTrace();
 		}
 	}
+		else{
+			
+		}
+	}
 
 	@Override
 	public Account transfer(Account account, double amount) {
@@ -262,8 +287,19 @@ public class AccountService implements AccountDAO {
 	 
 
 	@Override
-	public void updateAccount(Account account) {
-		// TODO Auto-generated method stub
+	public void updateAccount(int id,double balance,String name,String type,String number) {
+				try {
+				Account account = accountRepository.findOne(id);
+				account.setNumber(number);
+				account.setName(name);
+				account.setType(type);
+				account.setBalance(balance);
+				accountRepository.saveAndFlush(account);
+				}
+				catch (Exception ex) {
+				ex.toString();
+				}
+				 
 
 	}
 
@@ -287,15 +323,43 @@ public class AccountService implements AccountDAO {
 	}
 
 	@Override
-	public boolean accountExists(String accountNo) {
-		// TODO Auto-generated method stub
-		return false;
+	public String accountExists(String accountNo){
+		String output=null;
+		 
+			
+		 Query q=em.createQuery("FROM Account a WHERE a.number=:num").setParameter("num", accountNo);
+		/*Account account=(Account)q.getSingleResult();
+		  if(account.getNumber().toString()=="0" || account.getNumber().toString()==""){
+			  return "0";
+		  }
+		  else{
+			  return "1";
+		  }*/
+		 
+			 List results = q.getResultList();
+			 if (results.isEmpty()) {
+				 return "0";
+			 }
+		     else {
+		    	 return "1";
+		     }
+			 
+			
+		 
+		 
 	}
 
 	@Override
-	public boolean canWithdraw(String accountNo, double amount) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean canWithdraw(long accountNo, double amount) {
+		Query query=em.createQuery("SELECT SUM(t.amount) FROM Transactions t WHERE t.accountNumber= :a ").setParameter("a",accountNo);
+		   String balance=(String)query.getSingleResult();
+		    double amounts=Double.parseDouble(balance);
+		    if(amounts>amount){
+		    	return true;
+		    }
+		    else{
+		   return false;
+		    }
 	}
 
 	@Override
@@ -308,7 +372,12 @@ public class AccountService implements AccountDAO {
 	public Account findAccountById(int id) {
 		return accountRepository.findOne(id);
 	}
-
+	@Override
+	public Account findAccountByCustomerID(int id) {
+		//return accountRepository.findOneByCustomerEquals(id);
+		return (Account) em.createQuery("FROM Account a WHERE customer=:a").setParameter("a",id).getResultList();
+	 
+	}
 	@Override
 	public List<Account> searchAccount(String number) {
 		

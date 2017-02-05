@@ -69,6 +69,18 @@
 
             </div>
         </div>
+        <c:if test="${not empty success}">
+			<div style="text-align: center" class="uk-alert uk-alert-success"
+				data-uk-alert="">
+				<c:out value="${success}" />
+			</div>
+		</c:if>
+		<c:if test="${not empty error}">
+			<div style="text-align: center" class="uk-alert uk-alert-danger"
+				data-uk-alert="">
+				<c:out value="${error}" />
+			</div>
+		</c:if>
         <div class="uk-width-xLarge-1-1">
             <div class="md-card">
                 <div class="md-card-content">
@@ -85,7 +97,7 @@
 								<div class="uk-margin-small-top">
 									<input type="text" style="" required="" name="account"
 										class="md-input"
-										placeholder=" Account number or name">
+										placeholder=" Account number">
 								</div>
 							</div>
 						 
@@ -143,11 +155,13 @@
                                                  <td>${customer.mobile}</td>    
                                              <td>${customer.address}</td>
                                                <td>${customer.job}</td>
-                                            <td> 
+                                             
+                                            <td class="uk-text-nowrap">
+                                                <a href="/management/customers/show/${customer.id}"><i class="material-icons md-24">&#xE8F4;</i></a> 
+                                                <a href="/management/customers/edit/${customer.id}" class="uk-margin-left"><i class="material-icons md-24">edit</i></a>
                                                 
-                                            <a href='/show' ><i title='Click to edit course' class="md-icon material-icons">edit</i></a> 
-   
                                             </td>
+                                            
                                           
                                         </tr>
                                         </c:forEach>

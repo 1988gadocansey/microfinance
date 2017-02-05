@@ -42,11 +42,9 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .deleteCookies("remember-me")
                 .logoutSuccessUrl("/")
-                .permitAll()
-                .and()
-                .sessionManagement()
-                .maximumSessions(2)
-                .maxSessionsPreventsLogin(true);
+                .permitAll();
+                
+                
                 
     }
 
